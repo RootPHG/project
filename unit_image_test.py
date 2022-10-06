@@ -65,3 +65,5 @@ while running:
     handle_events()
 
 close_canvas()
+
+
