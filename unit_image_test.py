@@ -54,14 +54,14 @@ dir_x = 0
 dir_y = 0
 x = 800 // 2
 y = 600 // 2
-anime = 7
+anime = 0
 
 while running:
     clear_canvas()
-    mob_char.clip_draw(frame * 480,anime * 60, 40, 60, x, y)
+    main_char3.clip_draw(anime * 30 + 50,(frame + 12) * 50, 40, 50, x, y)
     update_canvas()
     frame = (frame + 1) % 4
-    delay(0.05)
+    delay(0.1)
     x += dir_x * 5
     y += dir_y * 5
     handle_events()
