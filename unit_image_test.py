@@ -52,11 +52,13 @@ running = True
 frame = 0
 dir_x = 0
 dir_y = 0
+x = 800 // 2
+y = 600 // 2
 anime = 0
 
 while running:
     clear_canvas()
-    # main_char1
+    main_char1.clip_draw(100, 100, 100, 100, x, y)
     update_canvas()
     # frame = (frame + 1) %
     delay(0.05)
