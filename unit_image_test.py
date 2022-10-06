@@ -48,6 +48,20 @@ main_char3 = load_image('character_type_swat.png')
 main_char4 = load_image('main_character.png')
 mod_char = load_image('clasic_monster.png')
 
+running = True
+frame = 0
+dir_x = 0
+dir_y = 0
+anime = 0
 
+while running:
+    clear_canvas()
+    # main_char1
+    update_canvas()
+    # frame = (frame + 1) %
+    delay(0.05)
+    x += dir_x * 5
+    y += dir_y * 5
+    handle_events()
 
-
+close_canvas()
