@@ -46,7 +46,7 @@ main_char1 = load_image('doom_character1.png')
 main_char2 = load_image('doom_pistol.png')
 main_char3 = load_image('character_type_swat.png')
 main_char4 = load_image('main_character.png')
-mod_char = load_image('clasic_monster.png')
+mob_char = load_image('clasic_monster.png')
 
 running = True
 frame = 0
@@ -54,13 +54,13 @@ dir_x = 0
 dir_y = 0
 x = 800 // 2
 y = 600 // 2
-anime = 0
+anime = 7
 
 while running:
     clear_canvas()
-    main_char1.clip_draw(100, 100, 100, 100, x, y)
+    mob_char.clip_draw(frame * 480,anime * 60, 40, 60, x, y)
     update_canvas()
-    # frame = (frame + 1) %
+    frame = (frame + 1) % 4
     delay(0.05)
     x += dir_x * 5
     y += dir_y * 5
