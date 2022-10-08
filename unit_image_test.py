@@ -42,11 +42,7 @@ def handle_events():
 
 open_canvas()
 
-main_char1 = load_image('doom_character1.png')
-main_char2 = load_image('doom_pistol.png')
-main_char3 = load_image('character_type_swat.png')
-main_char4 = load_image('main_character.png')
-mob_char = load_image('clasic_monster.png')
+main_char1 = load_image('hunter_sprite.png')
 
 running = True
 frame = 0
@@ -58,7 +54,7 @@ anime = 0
 
 while running:
     clear_canvas()
-    main_char2.clip_draw(anime * 60, (frame + 5) * 70, 60, 70, x, y)
+    main_char1.clip_draw(anime * 60, (frame + 5) * 70, 60, 70, x, y)
     update_canvas()
     frame = (frame + 1) % 4
     delay(0.3)
