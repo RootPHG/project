@@ -50,13 +50,13 @@ dir_x = 0
 dir_y = 0
 x = 800 // 2
 y = 600 // 2
-anime = 0
+anime = 7
 
 while running:
     clear_canvas()
-    main_char1.clip_draw(anime * 60, (frame + 5) * 70, 60, 70, x, y)
+    main_char1.clip_draw(frame * 59 + 220, anime * 90, 55, 90, x, y)
     update_canvas()
-    frame = (frame + 1) % 4
+    frame = (frame + 1) % 8
     delay(0.3)
     x += dir_x * 5
     y += dir_y * 5
