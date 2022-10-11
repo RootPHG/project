@@ -1,5 +1,8 @@
 from pico2d import *
 
+
+
+
 def handle_events():
     global running
     global dir_x
@@ -69,14 +72,14 @@ anime = 5
 
 while running:
     clear_canvas()
-    # main_char_move.clip_draw(frame * 62 + 200, anime * 79 + 15, 60, 84, x, y)
-    main_char_att.clip_draw(frame * 100 + 200, anime * 125, 60, 84, x, y)
+    main_char_move.clip_draw(frame * 62 + 200, anime * 79 + 15, 60, 84, x, y)
+    # main_char_att.clip_draw(frame * 100 + 200, anime * 125, 60, 84, x, y)
     update_canvas()
     # 멈췄을경우 이미지 고정
-    # if dir_x == 0 and dir_y == 0:
-    #     frame = 3
-    # else :
-    frame = (frame + 1) % 8
+    if dir_x == 0 and dir_y == 0:
+        frame = 3
+    else :
+        frame = (frame + 1) % 8
     delay(0.05)
     head_dir()
     x += dir_x * 5
