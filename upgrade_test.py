@@ -53,7 +53,7 @@ def handle_events():
             elif event.key == SDLK_DOWN:
                 dir_y -= 1
             elif event.key == SDLK_SPACE:
-                
+                pass
             elif event.key == SDLK_ESCAPE:
                 running = False
         #         KEY UP
