@@ -1,4 +1,7 @@
 from pico2d import *
+import game_framework
+
+import title_state
 
 class Ranger:
     global dir_x, dir_y
@@ -16,6 +19,7 @@ class Ranger:
         self.x += dir_x * 5
         self.y += dir_y * 5
         head_dir()
+        delay(0.04)
         pass
     def draw(self):
         self.move_image.clip_draw(self.frame * 62 + 200, anime * 79 + 15, 60, 84, self.x, self.y)
@@ -41,7 +45,7 @@ def handle_events():
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
-            running = False
+            game_framework.quit()
         #     KEY DOWN
         elif event.type == SDL_KEYDOWN:
             if event.key == SDLK_RIGHT:
@@ -55,7 +59,7 @@ def handle_events():
             elif event.key == SDLK_SPACE:
                 pass
             elif event.key == SDLK_ESCAPE:
-                running = False
+                game_framework.change_state(title_state)
         #         KEY UP
         elif event.type == SDL_KEYUP:
             if event.key == SDLK_RIGHT:
@@ -108,7 +112,6 @@ def exit():
 
 def update():
     ranger.update()
-    delay(0.03)
 
 def draw():
     clear_canvas()
