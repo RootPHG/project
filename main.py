@@ -1,17 +1,20 @@
 import pico2d
+import game_framework
+
+import logo_state
 import play_state
 
-start_state = play_state
+state = [logo_state, play_state]
 
 pico2d.open_canvas()
 
-start_state.enter()
+state.enter()
 
-while start_state.running:
-    start_state.handle_events()
-    start_state.update()
-    start_state.draw()
+while state.running:
+    state.handle_events()
+    state.update()
+    state.draw()
 
-start_state.exit()
+state.exit()
 
 pico2d.close_canvas()
