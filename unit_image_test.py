@@ -1,8 +1,6 @@
 from pico2d import *
 
 
-
-
 def handle_events():
     global running
     global dir_x
@@ -59,8 +57,10 @@ def head_dir():
 
 open_canvas()
 
-main_char_move = load_image('ranger_sprite.png')
-main_char_att = load_image('ranger_attack.png')
+main_move = load_image('ranger_sprite.png')
+main_att = load_image('ranger_attack.png')
+mob_move = load_image('berserker_sprite.png')
+mob_att = load_image('berserker_attack.png')
 
 running = True
 frame = 0
@@ -72,14 +72,15 @@ anime = 5
 
 while running:
     clear_canvas()
-    main_char_move.clip_draw(frame * 62 + 200, anime * 79 + 15, 60, 84, x, y)
-    # main_char_att.clip_draw(frame * 100 + 200, anime * 125, 60, 84, x, y)
+    main_move.clip_draw(frame * 62 + 200, anime * 79 + 15, 60, 84, x, y)
+    main_att.clip_draw(frame * 79 + 140, anime * 79 , 60, 84, x + 30, y)
+    mob_move
     update_canvas()
     # 멈췄을경우 이미지 고정
-    if dir_x == 0 and dir_y == 0:
-        frame = 3
-    else :
-        frame = (frame + 1) % 8
+    # if dir_x == 0 and dir_y == 0:
+    #     frame = 3
+    # else :
+    frame = (frame + 1) % 3
     delay(0.05)
     head_dir()
     x += dir_x * 5
