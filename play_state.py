@@ -2,6 +2,7 @@ from pico2d import *
 import game_framework
 
 import title_state
+import logo_state
 
 class Ranger:
     def __init__(self):
@@ -91,7 +92,8 @@ def handle_events():
                 ranger.attack = 1
                 ranger.frame = 0
             elif event.key == SDLK_ESCAPE:
-                game_framework.change_state(title_state)
+                game_framework.change_state(logo_state)
+
         #         KEY UP
         elif event.type == SDL_KEYUP:
             if event.key == SDLK_RIGHT:
