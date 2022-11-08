@@ -73,14 +73,16 @@ anime = 5
 while running:
     clear_canvas()
     main_move.clip_draw(frame * 62 + 200, anime * 79 + 15, 60, 84, x, y)
-    main_att.clip_draw(frame * 78 + 135, anime * 91 + 25, 60, 84, x, y)
+    # mob_att.clip_draw(frame * 78 + 135, anime * 91 + 25, 60, 84, x, y)
+    mob_move.clip_draw(frame * 62 + 200, anime * 79 + 15, 60, 84, x + 100, y)
+    # mob_att.clip_draw(frame * 78 + 135, anime * 91 + 25, 60, 84, x, y)
     mob_move
     update_canvas()
     # 멈췄을경우 이미지 고정
     # if dir_x == 0 and dir_y == 0:
     #     frame = 3
     # else :
-    frame = (frame + 1) % 4
+    frame = (frame + 1) % 8
     delay(0.05)
     head_dir()
     x += dir_x * 5
