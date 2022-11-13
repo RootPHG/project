@@ -3,6 +3,7 @@ from pico2d import *
 class Ranger:
     move_image = None
     att_image = None
+
     def __init__(self):
         self.x, self.y = 800 // 2, 600 // 2
         self.dir_x = 0
@@ -14,6 +15,7 @@ class Ranger:
             self.move_image = load_image('ranger_sprite.png')
         if Ranger.att_image == None:
             self.att_image = load_image('ranger_attack.png')
+
     def update(self):
         if self.attack == 0:
             if self.dir_x < 0 and self.dir_y < 0:
@@ -49,6 +51,7 @@ class Ranger:
             delay(0.1)
 
         pass
+    
     def draw(self):
         if self.attack == 0:
             self.move_image.clip_draw(self.frame * 62 + 200, self.anime * 79 + 15, 60, 84, self.x, self.y)
