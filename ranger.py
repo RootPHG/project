@@ -51,7 +51,7 @@ class Ranger:
             delay(0.1)
 
         pass
-    
+
     def draw(self):
         if self.attack == 0:
             self.move_image.clip_draw(self.frame * 62 + 200, self.anime * 79 + 15, 60, 84, self.x, self.y)
