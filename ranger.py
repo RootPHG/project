@@ -1,5 +1,64 @@
 from pico2d import *
 
+RD, LD, UD, DD, RU, LU, UU, DU, SPACE_D= range(9)
+
+key_event_table = {
+    (SDL_KEYDOWN, SDLK_RIGHT): RD,
+    (SDL_KEYDOWN, SDLK_LEFT): LD,
+    (SDL_KEYDOWN, SDLK_UP): UD,
+    (SDL_KEYDOWN, SDLK_DOWN): DD,
+    (SDL_KEYUP, SDLK_RIGHT): RU,
+    (SDL_KEYUP, SDLK_LEFT): LU,
+    (SDL_KEYUP, SDLK_UP): UU,
+    (SDL_KEYUP, SDLK_DOWN): DU,
+    (SDL_KEYDOWN, SDLK_SPACE): SPACE_D
+}
+
+class IDLE:
+    def enter():
+        pass
+
+    def exit():
+        pass
+
+    def do():
+        pass
+
+    def draw():
+        pass
+
+
+class RUN:
+    def enter():
+        pass
+
+    def exit():
+        pass
+
+    def do():
+        pass
+
+    def draw():
+        pass
+
+class SHOT:
+    def enter():
+        pass
+
+    def exit():
+        pass
+
+    def do():
+        pass
+
+    def draw():
+        pass
+
+next_state = {
+    IDLE: {RU}
+}
+
+
 class Ranger:
     move_image = None
     att_image = None
