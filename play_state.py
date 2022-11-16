@@ -3,10 +3,12 @@ import game_framework
 
 import title_state
 import logo_state
+from ranger import Ranger
 
 class Ranger:
     move_image = None
     att_image = None
+
     def __init__(self):
         self.x, self.y = 800 // 2, 600 // 2
         self.dir_x = 0
@@ -18,6 +20,7 @@ class Ranger:
             self.move_image = load_image('ranger_sprite.png')
         if Ranger.att_image == None:
             self.att_image = load_image('ranger_attack.png')
+
     def update(self):
         if self.attack == 0:
             if self.dir_x < 0 and self.dir_y < 0:
@@ -133,7 +136,7 @@ def handle_events():
         #     KEY DOWN
         elif (event.type, event.key) == (SDL_KEYDOWN< SDLK_ESCAPE):
             # game_framework.change_state(logo_state)
-            game_framework.quit()
+            game_framework.quit()       #임시
         else:
             ranger.handle_event(event)
 
