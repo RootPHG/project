@@ -1,6 +1,6 @@
 from pico2d import *
 
-RD, LD, UD, DD, RU, LU, UU, DU, SPACE, TIMER= range(10)
+RD, LD, UD, DD, RU, LU, UU, DU, TIMER= range(9)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RD,
@@ -11,7 +11,6 @@ key_event_table = {
     (SDL_KEYUP, SDLK_LEFT): LU,
     (SDL_KEYUP, SDLK_UP): UU,
     (SDL_KEYUP, SDLK_DOWN): DU,
-    (SDL_KEYDOWN, SDLK_SPACE): SPACE
 }
 
 class IDLE:
@@ -67,25 +66,13 @@ class RUN_Z:
     def draw():
         pass
 
-class SHOT:
-    def enter():
-        pass
 
-    def exit():
-        pass
-
-    def do():
-        pass
-
-    def draw():
-        pass
 
 next_state = {
-    IDLE: {},
-    RUN_X: {},
-    RUN_Y: {},
-    RUN_Z: {},
-    SHOT: {}
+    IDLE: {RD: RUN_X, LD: RUN_X, UD: RUN_Y, DD: RUN_Y, RU: RUN_X, LU: RUN_X, UU: RUN_Y, DU: RUN_Y},
+    RUN_X: {RD: IDLE, LD: IDLE, UD: RUN_Z, DD: RUN_Z, RU: IDLE, LU: IDLE, UU: RUN_Z, DU: RUN_Z},
+    RUN_Y: {RD: RUN_Z, LD: RUN_Z, UD: IDLE, DD: IDLE, RU: RUN_Z, LU: RUN_Z, UU: IDLE, DU: IDLE},
+    RUN_Z: {RD: RUN_Z, LD: RUN_Z, UD: IDLE, DD: IDLE, RU: RUN_Z, LU: RUN_Z, UU: IDLE, DU: IDLE}
 }
 
 
@@ -105,8 +92,20 @@ class Ranger:
         if Ranger.att_image == None:
             self.att_image = load_image('ranger_attack.png')
 
+        self.event_que = []
+        self.cur_state = IDLE
+        self.cur_state.enter()
+
     def update(self):
         if self.attack == 0:
+            self.cur_state.do(self)
+
+            if self.event_que:
+                event = self.event_que.pop()
+                self.cur_state.exit(self)
+                self.cur_state = next_state[self.cur_state][event]
+                self.cur_state.enter(self, event)
+
             if self.dir_x < 0 and self.dir_y < 0:
                 self.anime = 0
             elif self.dir_x < 0 and self.dir_y == 0:
