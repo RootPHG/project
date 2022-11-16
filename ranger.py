@@ -1,6 +1,6 @@
 from pico2d import *
 
-RD, LD, UD, DD, RU, LU, UU, DU, SPACE_D= range(9)
+RD, LD, UD, DD, RU, LU, UU, DU, SPACE, TIMER= range(10)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RD,
@@ -11,7 +11,7 @@ key_event_table = {
     (SDL_KEYUP, SDLK_LEFT): LU,
     (SDL_KEYUP, SDLK_UP): UU,
     (SDL_KEYUP, SDLK_DOWN): DU,
-    (SDL_KEYDOWN, SDLK_SPACE): SPACE_D
+    (SDL_KEYDOWN, SDLK_SPACE): SPACE
 }
 
 class IDLE:
@@ -28,7 +28,33 @@ class IDLE:
         pass
 
 
-class RUN:
+class RUN_X:
+    def enter():
+        pass
+
+    def exit():
+        pass
+
+    def do():
+        pass
+
+    def draw():
+        pass
+
+class RUN_Y:
+    def enter():
+        pass
+
+    def exit():
+        pass
+
+    def do():
+        pass
+
+    def draw():
+        pass
+
+class RUN_Z:
     def enter():
         pass
 
@@ -55,7 +81,11 @@ class SHOT:
         pass
 
 next_state = {
-    IDLE: {RU}
+    IDLE: {},
+    RUN_X: {},
+    RUN_Y: {},
+    RUN_Z: {},
+    SHOT: {}
 }
 
 
