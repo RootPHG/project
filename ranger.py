@@ -14,57 +14,58 @@ key_event_table = {
 }
 
 class IDLE:
-    def enter():
+    def enter(self, event):
+        print('ENTER IDLE')
         pass
 
-    def exit():
+    def exit(self):
         pass
 
-    def do():
+    def do(self):
         pass
 
-    def draw():
-        pass
+    def draw(self):
+        self.move_image.clip_draw(self.frame * 62 + 200, self.anime * 79 + 15, 60, 84, self.x, self.y)
 
 
 class RUN_X:
-    def enter():
+    def enter(self, event):
         pass
 
-    def exit():
+    def exit(self):
         pass
 
-    def do():
+    def do(self):
         pass
 
-    def draw():
-        pass
+    def draw(self):
+        self.move_image.clip_draw(self.frame * 62 + 200, self.anime * 79 + 15, 60, 84, self.x, self.y)
 
 class RUN_Y:
-    def enter():
+    def enter(self, event):
         pass
 
-    def exit():
+    def exit(self):
         pass
 
-    def do():
+    def do(self):
         pass
 
-    def draw():
-        pass
+    def draw(self):
+        self.move_image.clip_draw(self.frame * 62 + 200, self.anime * 79 + 15, 60, 84, self.x, self.y)
 
 class RUN_Z:
-    def enter():
+    def enter(self, event):
         pass
 
-    def exit():
+    def exit(self):
         pass
 
-    def do():
+    def do(self):
         pass
 
-    def draw():
-        pass
+    def draw(self):
+        self.move_image.clip_draw(self.frame * 62 + 200, self.anime * 79 + 15, 60, 84, self.x, self.y)
 
 
 
@@ -142,8 +143,17 @@ class Ranger:
 
     def draw(self):
         if self.attack == 0:
-            self.move_image.clip_draw(self.frame * 62 + 200, self.anime * 79 + 15, 60, 84, self.x, self.y)
+            self.cur_state.draw(self)
+            # self.move_image.clip_draw(self.frame * 62 + 200, self.anime * 79 + 15, 60, 84, self.x, self.y)
         elif self.attack == 1:
             self.att_image.clip_draw(self.frame * 78 + 135, self.anime * 91 + 25, 60, 84, self.x - 5, self.y)
 
-        pass
+    def add_event(self, event):
+        self.event_que.insert(0, event)
+
+    def handle_event(self, event):
+        if (event.type, event.key) in key_event_table:
+            key_event = key_event_table[(event.type, event.key)]
+            self.add_event(key_event)
+
+
