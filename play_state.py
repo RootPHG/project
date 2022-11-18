@@ -134,11 +134,31 @@ def handle_events():
         if event.type == SDL_QUIT:
             game_framework.quit()
         #     KEY DOWN
-        elif (event.type, event.key) == (SDL_KEYDOWN< SDLK_ESCAPE):
-            # game_framework.change_state(logo_state)
-            game_framework.quit()       #임시
-        else:
-            ranger.handle_event(event)
+        elif event.type == SDL_KEYDOWN:
+            if event.key == SDLK_RIGHT:
+                ranger.dir_x += 1
+            elif event.key == SDLK_LEFT:
+                ranger.dir_x -= 1
+            elif event.key == SDLK_UP:
+                ranger.dir_y += 1
+            elif event.key == SDLK_DOWN:
+                ranger.dir_y -= 1
+            elif event.key == SDLK_SPACE:
+                ranger.attack = 1
+                ranger.frame = 0
+            elif event.key == SDLK_ESCAPE:
+                game_framework.change_state(logo_state)
+
+            #         KEY UP
+        elif event.type == SDL_KEYUP:
+            if event.key == SDLK_RIGHT:
+                ranger.dir_x -= 1
+            elif event.key == SDLK_LEFT:
+                ranger.dir_x += 1
+            elif event.key == SDLK_UP:
+                ranger.dir_y -= 1
+            elif event.key == SDLK_DOWN:
+                ranger.dir_y += 1
 
 
 
@@ -165,16 +185,16 @@ def draw():
     update_canvas()
 
 
-# open_canvas()
-#
-# enter()
-# while running:
-#     handle_events()
-#     update()
-#     draw()
-#
-# exit()
-#
-# close_canvas()
+open_canvas()
+
+enter()
+while running:
+    handle_events()
+    update()
+    draw()
+
+exit()
+
+close_canvas()
 
 
