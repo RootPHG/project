@@ -1,6 +1,6 @@
 from pico2d import *
 
-RD, LD, UD, DD, RU, LU, UU, DU, TIMER= range(9)
+RD, LD, UD, DD, RU, LU, UU, DU, SPACE, TIMER= range(10)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RD,
@@ -11,69 +11,51 @@ key_event_table = {
     (SDL_KEYUP, SDLK_LEFT): LU,
     (SDL_KEYUP, SDLK_UP): UU,
     (SDL_KEYUP, SDLK_DOWN): DU,
+    (SDL_KEYDOWN, SDLK_SPACE): SPACE
 }
 
-class IDLE:
+class RUN_STAND:
     def enter(self, event):
+        print('ENTER IDLE')
+        self.frame = 3
+        pass
+
+    def exit(self):
         print('ENTER IDLE')
         pass
 
-    def exit(self):
-        pass
-
     def do(self):
+
         pass
 
     def draw(self):
         self.move_image.clip_draw(self.frame * 62 + 200, self.anime * 79 + 15, 60, 84, self.x, self.y)
 
 
-class RUN_X:
+class ATTACK:
     def enter(self, event):
+        print('ENTER RUN_X')
         pass
 
     def exit(self):
+        print('EXIT RUN_X')
         pass
 
     def do(self):
+        self.frame = (self.frame + 1) % 8
+        self.x += self.dir_x * 5
+        self.y += self.dir_y * 5
         pass
 
     def draw(self):
         self.move_image.clip_draw(self.frame * 62 + 200, self.anime * 79 + 15, 60, 84, self.x, self.y)
 
-class RUN_Y:
-    def enter(self, event):
-        pass
-
-    def exit(self):
-        pass
-
-    def do(self):
-        pass
-
-    def draw(self):
-        self.move_image.clip_draw(self.frame * 62 + 200, self.anime * 79 + 15, 60, 84, self.x, self.y)
-
-class RUN_Z:
-    def enter(self, event):
-        pass
-
-    def exit(self):
-        pass
-
-    def do(self):
-        pass
-
-    def draw(self):
-        self.move_image.clip_draw(self.frame * 62 + 200, self.anime * 79 + 15, 60, 84, self.x, self.y)
 
 
 
 next_state = {
-    IDLE: {RD: RUN_X, LD: RUN_X, UD: RUN_Y, DD: RUN_Y, RU: RUN_X, LU: RUN_X, UU: RUN_Y, DU: RUN_Y},
-    RUN_X: {RD: IDLE, LD: IDLE, UD: RUN_Z, DD: RUN_Z, RU: IDLE, LU: IDLE, UU: RUN_Z, DU: RUN_Z},
-    RUN_Y: {RD: RUN_Z, LD: RUN_Z, UD: IDLE, DD: IDLE, RU: RUN_Z, LU: RUN_Z, UU: IDLE, DU: IDLE},
-    RUN_Z: {RD: RUN_Z, LD: RUN_Z, UD: IDLE, DD: IDLE, RU: RUN_Z, LU: RUN_Z, UU: IDLE, DU: IDLE}
+    RUN_STAND: {RD: RUN_STAND, LD: RUN_STAND, UD: RUN_STAND, DD: RUN_STAND, RU: RUN_STAND, LU: RUN_STAND, UU: RUN_STAND, DU: RUN_STAND,SPACE: ATTACK},
+    ATTACK: {TIMER: RUN_STAND},
 }
 
 
@@ -94,7 +76,7 @@ class Ranger:
             self.att_image = load_image('ranger_attack.png')
 
         self.event_que = []
-        self.cur_state = IDLE
+        self.cur_state = RUN_STAND
         self.cur_state.enter()
 
     def update(self):
@@ -124,14 +106,8 @@ class Ranger:
             elif self.dir_x == 0 and self.dir_y < 0:
                 self.anime = 7
 
-            if self.dir_x == 0 and self.dir_y == 0:
-                self.frame = 3
-            else:
-                self.frame = (self.frame + 1) % 8
-            self.x += self.dir_x * 5
-            self.y += self.dir_y * 5
-
             delay(0.04)
+
         elif self.attack == 1:
             self.frame = (self.frame + 1) % 4
 
@@ -151,9 +127,10 @@ class Ranger:
     def add_event(self, event):
         self.event_que.insert(0, event)
 
-    def handle_event(self, event):
-        if (event.type, event.key) in key_event_table:
-            key_event = key_event_table[(event.type, event.key)]
-            self.add_event(key_event)
+
+def handle_event(self, event):
+    if (event.type, event.key) in key_event_table:
+        key_event = key_event_table[(event.type, event.key)]
+        self.add_event(key_event)
 
 
