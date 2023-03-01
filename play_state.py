@@ -135,30 +135,31 @@ def handle_events():
             game_framework.quit()
         #     KEY DOWN
         elif event.type == SDL_KEYDOWN:
-            if event.key == SDLK_RIGHT:
-                ranger.dir_x += 1
-            elif event.key == SDLK_LEFT:
-                ranger.dir_x -= 1
-            elif event.key == SDLK_UP:
-                ranger.dir_y += 1
-            elif event.key == SDLK_DOWN:
-                ranger.dir_y -= 1
-            elif event.key == SDLK_SPACE:
-                ranger.attack = 1
-                ranger.frame = 0
-            elif event.key == SDLK_ESCAPE:
-                game_framework.change_state(logo_state)
+            # if event.key == SDLK_RIGHT:
+            #     ranger.dir_x += 1
+            # elif event.key == SDLK_LEFT:
+            #     ranger.dir_x -= 1
+            # elif event.key == SDLK_UP:
+            #     ranger.dir_y += 1
+            # elif event.key == SDLK_DOWN:
+            #     ranger.dir_y -= 1
+            # elif event.key == SDLK_SPACE:
+            #     ranger.attack = 1
+            #     ranger.frame = 0
+            if event.key == SDLK_ESCAPE:
+                # game_framework.change_state(logo_state)
+                game_framework.quit()
 
             #         KEY UP
-        elif event.type == SDL_KEYUP:
-            if event.key == SDLK_RIGHT:
-                ranger.dir_x -= 1
-            elif event.key == SDLK_LEFT:
-                ranger.dir_x += 1
-            elif event.key == SDLK_UP:
-                ranger.dir_y -= 1
-            elif event.key == SDLK_DOWN:
-                ranger.dir_y += 1
+        # elif event.type == SDL_KEYUP:
+        #     if event.key == SDLK_RIGHT:
+        #         ranger.dir_x -= 1
+        #     elif event.key == SDLK_LEFT:
+        #         ranger.dir_x += 1
+        #     elif event.key == SDLK_UP:
+        #         ranger.dir_y -= 1
+        #     elif event.key == SDLK_DOWN:
+        #         ranger.dir_y += 1
 
 
 
