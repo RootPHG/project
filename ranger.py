@@ -1,6 +1,6 @@
 from pico2d import *
 
-RD, LD, UD, DD, RU, LU, UU, DU, SPACE, TIMER= range(10)
+RD, LD, UD, DD, RU, LU, UU, DU, SPACE, TIMER = range(10)
 
 key_event_table = {
     (SDL_KEYDOWN, SDLK_RIGHT): RD,
